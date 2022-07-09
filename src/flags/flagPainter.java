@@ -180,13 +180,14 @@ public class flagPainter extends Frame { //Розширяє або наслід�
 		int flagstockWidth = 5, flagstockHeight = 150;
 		int flagWidth = 120, flagHeight = 77;
 		int amountOfColors = 3;
-		int xShift = 50;
+		int xShift = flagWidth / 2;
 		int letterHeight = 30;
-		String[] countryNames = {"Belgium", "Romania", };	
-		//colors from left to right
+		String[] countryNames = {"Belgium", "Romania", "France"};	
+		//*colors from left to right
 		Color[] color = {
 			Color.black, Color.yellow, Color.red,
-			Color.blue.darker()   , Color.yellow, Color.red,
+			Color.blue.darker(), Color.yellow, Color.red,
+			Color.blue.darker(), Color.white, Color.red,
 		};			
 		//*Counting variables
 		int flagXStart = (xStart + flagstockWidth);
@@ -203,8 +204,8 @@ public class flagPainter extends Frame { //Розширяє або наслід�
 
 		//*Project*/
 		if ((countryNames.length * amountOfColors) != color.length) {
-			g.setColor(Color.red);
-			g.setFont(new Font("Arial", Font.BOLD, letterHeight));
+			g.setColor(Color.red.brighter());
+			g.setFont(new Font("Arial", Font.BOLD, letterHeight + 20));
 			g.drawString("Mistake in your code!!!".toUpperCase(), xStart, yStart);
 		}else{
 			for (int j = 0; j < countryNames.length; j++) {
