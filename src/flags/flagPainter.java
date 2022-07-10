@@ -3,8 +3,6 @@ package flags;
 import java.awt.*;
 import java.awt.event.*; //or: import java.awt.event.WindowAdapter;&import java.awt.event.WindowEvent;
 
-import javax.swing.plaf.FontUIResource;
-
 public class flagPainter extends Frame { //Розширяє або наслідує клас Frame
 
   //			 subclass			 superclass
@@ -28,28 +26,28 @@ public class flagPainter extends Frame { //Розширяє або наслід�
 
 	public void paint(Graphics g) {
 		//!Horizontal flag
-		// int xStart = 50, yStart = 100;
-		// int flagstockWidth = 5, flagstockHeight = 150;
-		// int flagWidth = 120, flagHeight = 77;
-		// int amountOfColors = 2;
+		int xStart = 50, yStart = 100;
+		int flagstockWidth = 5, flagstockHeight = 150;
+		int flagWidth = 120, flagHeight = 77;
+		int amountOfColors = 2;
 
-		// //*Counting variables
-		// int flagXStart = (xStart + flagstockWidth);
-		// int colorHeight = (flagHeight / amountOfColors);
-		// if (flagHeight % amountOfColors != 0) {
-		// 	flagHeight = flagHeight + (amountOfColors - (flagHeight % amountOfColors));
-		// }
-		// colorHeight = (flagHeight / amountOfColors);
+		//*Counting variables
+		int flagXStart = (xStart + flagstockWidth);
+		int colorHeight = (flagHeight / amountOfColors);
+		if (flagHeight % amountOfColors != 0) {
+			flagHeight = flagHeight + (amountOfColors - (flagHeight % amountOfColors));
+		}
+		colorHeight = (flagHeight / amountOfColors);
 
-		// g.setColor(Color.white);
-		// g.fillRect(flagXStart, yStart, flagWidth, colorHeight);
-		// g.setColor(Color.red);
-		// g.fillRect(flagXStart, yStart + colorHeight, flagWidth, colorHeight);
-		// g.setColor(Color.lightGray);
-		// g.fillRect(xStart, yStart, flagstockWidth, flagstockHeight);
-		// g.setColor(Color.black);
-		// g.drawRect(xStart, yStart, flagstockWidth, flagstockHeight);
-		// g.drawRect(flagXStart, yStart, flagWidth, flagHeight);
+		g.setColor(Color.blue);
+		g.fillRect(flagXStart, yStart, flagWidth, colorHeight);
+		g.setColor(Color.yellow);
+		g.fillRect(flagXStart, yStart + colorHeight, flagWidth, colorHeight);
+		g.setColor(Color.lightGray);
+		g.fillRect(xStart, yStart, flagstockWidth, flagstockHeight);
+		g.setColor(Color.black);
+		g.drawRect(xStart, yStart, flagstockWidth, flagstockHeight);
+		g.drawRect(flagXStart, yStart, flagWidth, flagHeight);
 
 		// //!Vertical flag
 		// int xStart = 50, yStart = 100;
@@ -175,56 +173,56 @@ public class flagPainter extends Frame { //Розширяє або наслід�
 		// 	}
 		// }
 
-		//!Vertical flags with loops
-		int xStart = 50, yStart = 100;
-		int flagstockWidth = 5, flagstockHeight = 150;
-		int flagWidth = 120, flagHeight = 77;
-		int amountOfColors = 3;
-		int xShift = flagWidth / 2;
-		int letterHeight = 30;
-		String[] countryNames = {"Belgium", "Romania", "France"};	
-		//*colors from left to right
-		Color[] color = {
-			Color.black, Color.yellow, Color.red,
-			Color.blue.darker(), Color.yellow, Color.red,
-			Color.blue.darker(), Color.white, Color.red,
-		};			
-		//*Counting variables
-		int flagXStart = (xStart + flagstockWidth);
-		int colorWidth = (flagWidth / amountOfColors);
-		if (flagWidth % amountOfColors != 0) {
-			flagWidth = flagWidth + (amountOfColors - (flagWidth % amountOfColors));
-		}
-		colorWidth = (flagWidth / amountOfColors);
-		int allWidth = flagstockWidth + flagWidth;
-		xShift = allWidth + xShift;
-		int letterX = xStart + (flagstockWidth * 3),
-		letterY = yStart + (flagHeight + (flagHeight / 2));
-		int colorCount = 0;
+		// //!Vertical flags with loops
+		// int xStart = 50, yStart = 100;
+		// int flagstockWidth = 5, flagstockHeight = 150;
+		// int flagWidth = 120, flagHeight = 77;
+		// int amountOfColors = 3;
+		// int xShift = flagWidth / 2;
+		// int letterHeight = 30;
+		// String[] countryNames = {"Belgium", "Romania", "France"};	
+		// //*colors from left to right
+		// Color[] color = {
+		// 	Color.black, Color.yellow, Color.red,
+		// 	Color.blue.darker(), Color.yellow, Color.red,
+		// 	Color.blue.darker(), Color.white, Color.red,
+		// };			
+		// //*Counting variables
+		// int flagXStart = (xStart + flagstockWidth);
+		// int colorWidth = (flagWidth / amountOfColors);
+		// if (flagWidth % amountOfColors != 0) {
+		// 	flagWidth = flagWidth + (amountOfColors - (flagWidth % amountOfColors));
+		// }
+		// colorWidth = (flagWidth / amountOfColors);
+		// int allWidth = flagstockWidth + flagWidth;
+		// xShift = allWidth + xShift;
+		// int letterX = xStart + (flagstockWidth * 3),
+		// letterY = yStart + (flagHeight + (flagHeight / 2));
+		// int colorCount = 0;
 
-		//*Project*/
-		if ((countryNames.length * amountOfColors) != color.length) {
-			g.setColor(Color.red.brighter());
-			g.setFont(new Font("Arial", Font.BOLD, letterHeight + 20));
-			g.drawString("Mistake in your code!!!".toUpperCase(), xStart, yStart);
-		}else{
-			for (int j = 0; j < countryNames.length; j++) {
-				for (int i = 0; i < amountOfColors; i++) {
-					g.setColor(color[colorCount]);
-					g.fillRect(flagXStart + (colorWidth *i), yStart, colorWidth, flagHeight);
-					colorCount++;
-				}
-				g.setColor(Color.lightGray);
-				g.fillRect(xStart, yStart, flagstockWidth, flagstockHeight);
-				g.setColor(Color.black);
-				g.drawRect(xStart, yStart, flagstockWidth, flagstockHeight);
-				g.drawRect(flagXStart, yStart, flagWidth, flagHeight);
-				g.setFont(new Font("Arial", Font.BOLD, letterHeight));
-				g.drawString(countryNames[j].toUpperCase(), letterX, letterY);
-				xStart = xStart + xShift;
-				flagXStart = flagXStart + xShift;
-				letterX = letterX + xShift;
-			}
-		}
+		// //*Project*/
+		// if ((countryNames.length * amountOfColors) != color.length) {
+		// 	g.setColor(Color.red.brighter());
+		// 	g.setFont(new Font("Arial", Font.BOLD, letterHeight + 20));
+		// 	g.drawString("Mistake in your code!!!".toUpperCase(), xStart, yStart);
+		// }else{
+		// 	for (int j = 0; j < countryNames.length; j++) {
+		// 		for (int i = 0; i < amountOfColors; i++) {
+		// 			g.setColor(color[colorCount]);
+		// 			g.fillRect(flagXStart + (colorWidth *i), yStart, colorWidth, flagHeight);
+		// 			colorCount++;
+		// 		}
+		// 		g.setColor(Color.lightGray);
+		// 		g.fillRect(xStart, yStart, flagstockWidth, flagstockHeight);
+		// 		g.setColor(Color.black);
+		// 		g.drawRect(xStart, yStart, flagstockWidth, flagstockHeight);
+		// 		g.drawRect(flagXStart, yStart, flagWidth, flagHeight);
+		// 		g.setFont(new Font("Arial", Font.BOLD, letterHeight));
+		// 		g.drawString(countryNames[j].toUpperCase(), letterX, letterY);
+		// 		xStart = xStart + xShift;
+		// 		flagXStart = flagXStart + xShift;
+		// 		letterX = letterX + xShift;
+		// 	}
+		// }
 	}
 }
